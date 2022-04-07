@@ -1,6 +1,7 @@
 .header_container {
   color: #fff;
   margin-bottom: 2rem;
+  height: 4vh;
 }
 
 .header_nav {
@@ -8,11 +9,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-}
-
-.header_nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
 }
 
 .header_nav a.router_link_exact_active {
