@@ -1,10 +1,23 @@
 import {Header, Footer} from './components';
+import {HomePage, LoginPage} from './views';
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import {useState} from 'react';
 
 function App() {
-  return (
+
+
+
+
+    return (
     <div className="App">
-        <Header />
-        <Footer />
+        <BrowserRouter>
+            <Header />
+            <Routes> s
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />}/>
+            </Routes>
+            <Footer />
+        </BrowserRouter>
     </div>
   );
 }
