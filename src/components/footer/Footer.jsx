@@ -8,9 +8,11 @@ import styles from './Footer.module.scss';
  */
 
 const Footer = () => {
-    return <footer className={styles.footer_container}>
-                <p className={styles.footer_text}>Copyright 2020 Argent Bank</p>
-           </footer>
+    return (
+        <footer className={styles.footer_container}>
+            <p className={styles.footer_text}>Copyright 2020 Argent Bank</p>
+        </footer>
+    )
 }
 
 export default Footer;

@@ -9,7 +9,8 @@ import styles from './Header.module.scss';
  */
 
 const Header = () => {
-    return  <header className={styles.header_container}>
+    return (
+        <header className={styles.header_container}>
                 <nav className={styles.header_nav}>
                     <a className={styles.header_nav_logo} href="./index.html">
                         <img
@@ -36,7 +37,8 @@ const Header = () => {
                         </a>
                     </div>
                 </nav>
-            </header>
+        </header>
+    )
 }
 
 export default Header;
