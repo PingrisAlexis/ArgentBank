@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './FeatureItem.module.scss';
+import React from 'react'
+import styles from './FeatureItem.module.scss'
 
 /**
  * @name FeatureItem
@@ -11,16 +11,20 @@ import styles from './FeatureItem.module.scss';
  * @returns {JSX.Element}
  */
 
-const FeatureItem = ({featureContent}) => {
+const FeatureItem = ({ featureContent }) => {
     return (
         <div className={styles.feature_item}>
-            <img src={featureContent.imgSrc}
-                 alt={featureContent.imgAlt}
-                 className={styles.feature_icon}/>
-            <h3 className={styles.feature_item_title}>{featureContent.title}</h3>
+            <img
+                src={featureContent.imgSrc}
+                alt={featureContent.imgAlt}
+                className={styles.feature_icon}
+            />
+            <h3 className={styles.feature_item_title}>
+                {featureContent.title}
+            </h3>
             <p>{featureContent.description}</p>
         </div>
     )
 }
 
-export default FeatureItem;
+export default FeatureItem

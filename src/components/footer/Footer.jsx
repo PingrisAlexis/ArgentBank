@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Footer.module.scss';
+import React from 'react'
+import styles from './Footer.module.scss'
 
 /**
  * @name Footer
@@ -15,4 +15,4 @@ const Footer = () => {
     )
 }
 
-export default Footer;
+export default Footer
