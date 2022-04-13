@@ -4,6 +4,12 @@ import styles from './SignInForm.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../store/actions/auth'
+import {
+    errorSelector,
+    isLoadingSelector,
+    isLoggedInSelector,
+} from '../../store/selectors/selectors'
+import { LoaderSpinner } from '../index'
 
 const SignInForm = () => {
     let navigate = useNavigate()
@@ -11,12 +17,15 @@ const SignInForm = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const isLoggedIn = useSelector((state) => state.isLoggedIn)
-    const error = useSelector((state) => state.error)
+    const [remember, setRemember] = useState(false)
+
+    const isLoggedIn = useSelector(isLoggedInSelector)
+    const error = useSelector(errorSelector)
+    const isLoading = useSelector(isLoadingSelector)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(login(email, password))
+        dispatch(login(email, password, remember))
     }
 
     useEffect(() => {
@@ -25,13 +34,16 @@ const SignInForm = () => {
         }
     }, [isLoggedIn])
 
-    return (
+    return isLoading ? (
+        <LoaderSpinner />
+    ) : (
         <form onSubmit={handleSubmit}>
             <div className={styles.input_wrapper}>
                 <label htmlFor="username">tony@stark.com</label>
                 <label htmlFor="username">password123</label>
                 <label htmlFor="username">Username</label>
                 <input
+                    disabled={isLoading}
                     type="text"
                     id="username"
                     onChange={(e) => setEmail(e.target.value)}
@@ -46,11 +58,15 @@ const SignInForm = () => {
                 />
             </div>
             <div className={styles.input_remember}>
-                <input type="checkbox" id="remember-me" />
+                <input
+                    type="checkbox"
+                    id="remember-me"
+                    onChange={(e) => setRemember(e.target.checked)}
+                />
                 <label htmlFor="remember-me">Remember me</label>
             </div>
             <button className={styles.sign_in_button}>Sign In</button>
-            {error && <div>ERREUR: {error}</div>}
+            {error && <div>{error}</div>}
         </form>
     )
 }
