@@ -3,44 +3,66 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     GET_PROFILE_SUCCESS,
+    LOADING,
+    REMEMBER,
 } from '../actions/types'
 
 const initialState = {
     isLoggedIn: false,
     error: null,
-    token: {},
+    token: '',
     user: {},
+    isLoading: false,
 }
+
 export default function (state = initialState, action) {
     const { type, payload } = action
     switch (type) {
-        case LOGIN_SUCCESS:
+        case LOGIN_SUCCESS: {
             return {
                 ...state,
                 isLoggedIn: true,
                 token: payload.token,
                 error: null,
             }
-        case LOGIN_FAIL:
+        }
+        case LOGIN_FAIL: {
             return {
                 ...state,
                 isLoggedIn: false,
                 token: null,
                 error: payload,
             }
-        case LOGOUT:
+        }
+        case GET_PROFILE_SUCCESS: {
             return {
                 ...state,
-                isLoggedIn: false,
-                token: null,
-                user: null,
-            }
-        case GET_PROFILE_SUCCESS:
-            return {
-                ...state,
-                isLoggedIn: true,
                 user: payload.user,
             }
+        }
+        case LOGOUT: {
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                user: {},
+                token: '',
+                isLoggedIn: false,
+            }
+        }
+        case REMEMBER: {
+            return {
+                ...state,
+                user: payload.user,
+                token: payload.token,
+                isLoggedIn: true,
+            }
+        }
+        case LOADING: {
+            return {
+                ...state,
+                isLoading: payload,
+            }
+        }
         default:
             return state
     }
