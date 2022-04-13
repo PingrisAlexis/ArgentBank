@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+function setAuthorizationToken(token) {
+    if (token)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    else delete axios.defaults.headers.common['Authorization']
+}
+
 class Api {
     constructor() {
         this.baseURL = 'http://localhost:3001/api/v1/user'
@@ -34,4 +40,5 @@ class Api {
     }
 }
 
+export { setAuthorizationToken }
 export const service = new Api()
