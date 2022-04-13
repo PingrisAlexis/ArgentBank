@@ -1,0 +1,32 @@
+.transaction_card_container{
+  height: 15rem;
+  width: 60vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  border: 2px solid #ccc;
+  margin: 1rem;
+  background-color: white;
+  .transaction_card_part_left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .account_title {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.6rem
+    }
+  }
+  .transaction_button {
+    background-color: #0275d8;
+    color: white;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+}
+
