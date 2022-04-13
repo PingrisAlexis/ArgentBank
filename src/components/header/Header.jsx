@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../assets/argentBankLogo.png'
 import styles from './Header.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store/actions/auth'
 
+import {
+    isLoadingSelector,
+    isLoggedInSelector,
+    userSelector,
+} from '../../store/selectors/selectors'
+import { LoaderSpinner } from '../index'
 /**
  * @name Header
  * @description This is the header component.
@@ -12,10 +18,13 @@ import { logout } from '../../store/actions/auth'
  */
 
 const Header = () => {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn)
-    const dispatch = useDispatch()
     let navigate = useNavigate()
+    const dispatch = useDispatch()
 
+    const isLoggedIn = useSelector(isLoggedInSelector)
+    const isLoading = useSelector(isLoadingSelector)
+    const user = useSelector(userSelector)
+    console.log(isLoggedIn)
     const logOut = () => {
         dispatch(logout())
         navigate('/')
@@ -32,11 +41,13 @@ const Header = () => {
                     />
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
-                {isLoggedIn ? (
+                {isLoading ? (
+                    <LoaderSpinner />
+                ) : isLoggedIn ? (
                     <div>
                         <a className={styles.header_nav_item}>
                             <i className="fa fa-user-circle" />
-                            Tony
+                            {user.firstName}
                         </a>
                         <a className={styles.header_nav_item} onClick={logOut}>
                             <i className="fa fa-sign-out" />
