@@ -1,6 +1,7 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAIL = 'LOGIN_FAIL'
-export const LOGOUT = 'LOGOUT'
-export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS'
-export const LOADING = 'LOADING'
-export const REMEMBER = 'REMEMBER'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const USER_PROFILE = 'USER_PROFILE';
+export const LOADING = 'LOADING';
+export const REMEMBER = 'REMEMBER';
+export const EDIT_USER_PROFILE = 'EDIT_USER_PROFILE';
