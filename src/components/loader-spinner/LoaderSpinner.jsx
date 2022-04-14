@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './LoaderSpinner.module.scss'
+import React from 'react';
+import styles from './LoaderSpinner.module.scss';
 
 /**
  * @name LoaderSpinner
@@ -8,7 +8,7 @@ import styles from './LoaderSpinner.module.scss'
  */
 
 const LoaderSpinner = () => {
-    return <div className={styles.loader} />
-}
+    return <div className={styles.loader} />;
+};
 
-export default LoaderSpinner
+export default LoaderSpinner;
