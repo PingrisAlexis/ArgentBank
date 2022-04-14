@@ -1,6 +1,6 @@
-import ChatIcon from '../assets/icon-chat.png'
-import MoneyIcon from '../assets/icon-money.png'
-import SecurityIcon from '../assets/icon-security.png'
+import ChatIcon from '../../assets/icon-chat.png';
+import MoneyIcon from '../../assets/icon-money.png';
+import SecurityIcon from '../../assets/icon-security.png';
 
 export const FEATURES_CARDS_CONTENT = [
     {
@@ -27,7 +27,7 @@ export const FEATURES_CARDS_CONTENT = [
         imgSrc: SecurityIcon,
         imgAlt: 'Security icon',
     },
-]
+];
 
 export const HEROS_ITEMS_CONTENT = [
     {
@@ -42,7 +42,7 @@ export const HEROS_ITEMS_CONTENT = [
         id: 'hero3',
         description: 'High interest rates.',
     },
-]
+];
 
 export const TRANSACTIONS_CARDS_CONTENT = [
     {
@@ -53,14 +53,14 @@ export const TRANSACTIONS_CARDS_CONTENT = [
     },
     {
         id: 'account02',
-        title: 'Argent Bank Savings (x6712)',
+        title: 'Argent Bank Savings (x67124)',
         amount: '$10,928.42',
         description: 'Available Balance',
     },
     {
         id: 'account03',
-        title: 'Argent Bank Credit Card (x8349)',
+        title: 'Argent Bank Credit Card (x5201)',
         amount: '$184.30',
         description: 'Current Balance',
     },
-]
+];
