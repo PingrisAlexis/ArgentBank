@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './Footer.module.scss'
+import React from 'react';
+import styles from './Footer.module.scss';
 
 /**
  * @name Footer
@@ -12,7 +12,7 @@ const Footer = () => {
         <footer className={styles.footer_container}>
             <p className={styles.footer_text}>Copyright 2020 Argent Bank</p>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;
