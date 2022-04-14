@@ -1,9 +1,10 @@
-import React from 'react'
-import styles from './FeatureItem.module.scss'
+import React from 'react';
+import styles from './FeatureItem.module.scss';
+import PropTypes from 'prop-types';
 
 /**
  * @name FeatureItem
- * @description This is the Feature item component.
+ * @description This component will render one feature item.
  * @param {object} featureContent
  * @param {string} featureContent.imgSrc
  * @param {string} featureContent.title
@@ -24,7 +25,17 @@ const FeatureItem = ({ featureContent }) => {
             </h3>
             <p>{featureContent.description}</p>
         </div>
-    )
-}
+    );
+};
 
-export default FeatureItem
+FeatureItem.propTypes = {
+    featureContent: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        imgSrc: PropTypes.string.isRequired,
+        imgAlt: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+export default FeatureItem;
