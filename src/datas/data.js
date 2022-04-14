@@ -1,6 +1,6 @@
-import ChatIcon from '../../assets/icon-chat.png';
-import MoneyIcon from '../../assets/icon-money.png';
-import SecurityIcon from '../../assets/icon-security.png';
+import ChatIcon from '../assets/icon-chat.png';
+import MoneyIcon from '../assets/icon-money.png';
+import SecurityIcon from '../assets/icon-security.png';
 
 export const FEATURES_CARDS_CONTENT = [
     {
