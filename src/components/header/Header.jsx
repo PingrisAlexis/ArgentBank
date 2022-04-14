@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import Logo from '../../assets/argentBankLogo.png'
-import styles from './Header.module.scss'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../store/actions/auth'
-
+import React from 'react';
+import Logo from '../../assets/argentBankLogo.png';
+import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/actions/auth';
 import {
     isLoadingSelector,
     isLoggedInSelector,
     userSelector,
-} from '../../store/selectors/selectors'
-import { LoaderSpinner } from '../index'
+} from '../../store/selectors/selectors';
+import { LoaderSpinner } from '../index';
+
 /**
  * @name Header
  * @description This is the header component.
@@ -18,17 +18,15 @@ import { LoaderSpinner } from '../index'
  */
 
 const Header = () => {
-    let navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const isLoggedIn = useSelector(isLoggedInSelector)
-    const isLoading = useSelector(isLoadingSelector)
-    const user = useSelector(userSelector)
-    console.log(isLoggedIn)
-    const logOut = () => {
-        dispatch(logout())
-        navigate('/')
-    }
+    const isLoggedIn = useSelector(isLoggedInSelector);
+    const isLoading = useSelector(isLoadingSelector);
+    const user = useSelector(userSelector);
+
+    const signOut = () => {
+        dispatch(logout());
+    };
 
     return (
         <header className={styles.header_container}>
@@ -45,14 +43,18 @@ const Header = () => {
                     <LoaderSpinner />
                 ) : isLoggedIn ? (
                     <div>
-                        <a className={styles.header_nav_item}>
-                            <i className="fa fa-user-circle" />
+                        <Link to="/profile" className={styles.header_nav_item}>
+                            <i className="fa fa-user-circle fa-lg" />
                             {user.firstName}
-                        </a>
-                        <a className={styles.header_nav_item} onClick={logOut}>
-                            <i className="fa fa-sign-out" />
-                            Sign Out
-                        </a>
+                        </Link>
+                        <Link
+                            to="/"
+                            className={styles.header_nav_item}
+                            onClick={signOut}
+                        >
+                            <i className="fa fa-sign-out fa-lg" />
+                            Sign out
+                        </Link>
                     </div>
                 ) : (
                     <div>
@@ -64,7 +66,7 @@ const Header = () => {
                 )}
             </nav>
         </header>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
