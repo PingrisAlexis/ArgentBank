@@ -1,7 +1,13 @@
-import React from 'react'
-import styles from './LoginPage.module.scss'
-import { SignInForm } from '../../components'
-import '../../index.module.scss'
+import React from 'react';
+import styles from './LoginPage.module.scss';
+import { SignInForm } from '../../components';
+import '../../index.module.scss';
+
+/**
+ * @name LoginPage
+ * @description This view will render the login page.
+ * @returns {JSX.Element}
+ */
 
 const LoginPage = () => {
     return (
@@ -12,7 +18,7 @@ const LoginPage = () => {
                 <SignInForm />
             </section>
         </main>
-    )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;

@@ -8,13 +8,13 @@
 
 .hero {
     background-image: url('../../assets/bank-tree.jpeg');
-    background-position: 0 -50px;
+    background-position: 0 -5rem;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 300px;
+    height: 30rem;
     position: relative;
     @media (min-width: 920px) {
-        height: 400px;
+        height: 40rem;
         background-position: 0% 33%;
     }
 }
@@ -22,16 +22,16 @@
 .hero_content {
     position: relative;
     top: 2rem;
-    width: 200px;
+    width: 20rem;
     background: white;
     padding: 2rem;
     text-align: left;
     margin: 0 auto;
     @media (min-width: 920px) {
         position: absolute;
-        top: 50px;
-        right: 50px;
-        width: 300px;
+        top: 5rem;
+        right: 5rem;
+        width: 30rem;
         margin: 2rem;
     }
 }
