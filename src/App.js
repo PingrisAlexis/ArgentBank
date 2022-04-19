@@ -6,7 +6,6 @@ import { isLoggedInSelector } from './store/selectors/selectors';
 import ProtectedRoutes from './utils/protected-routes/ProtectedRoutes';
 import NotFound from './views/not-found/NotFound';
 import isRememberChecked from './utils/remember-user/RememberUser';
-import { useEffect } from 'react';
 
 function App() {
     const isLoggedIn = useSelector(isLoggedInSelector);
