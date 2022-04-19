@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-function setAuthorizationToken(token) {
-    if (token)
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    else delete axios.defaults.headers.common['Authorization'];
-}
-
 class Api {
     constructor() {
         this.baseURL = 'http://localhost:3001/api/v1/user';
@@ -36,7 +30,8 @@ class Api {
             })
             .then((response) => {
                 return response.data.body.token;
-            });
+            })
+            .catch((error) => console.log(error));
     }
 
     async userEdit(firstName, lastName, token) {
@@ -56,10 +51,8 @@ class Api {
             .then((response) => {
                 return response.data.body;
             })
-
             .catch((error) => console.log(error));
     }
 }
 
-export { setAuthorizationToken };
 export const service = new Api();
