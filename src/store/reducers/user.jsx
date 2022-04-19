@@ -38,6 +38,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 user: payload.user,
+                isLoggedIn: true,
             };
         }
         case LOGOUT: {
@@ -49,14 +50,14 @@ export default function (state = initialState, action) {
                 isLoggedIn: false,
             };
         }
-        case REMEMBER: {
-            return {
-                ...state,
-                user: payload.user,
-                token: payload.token,
-                isLoggedIn: true,
-            };
-        }
+        // case REMEMBER: {
+        //     return {
+        //         ...state,
+        //         user: payload.user,
+        //         token: payload.token,
+        //         isLoggedIn: true,
+        //     };
+        // }
         case LOADING: {
             return {
                 ...state,
