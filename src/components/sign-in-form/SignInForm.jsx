@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './SignInForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../store/actions/auth';
+import { loginUser } from '../../store/actions/user';
 import {
     errorSelector,
     isLoadingSelector,
@@ -31,7 +31,7 @@ const SignInForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(email, password, remember));
+        dispatch(loginUser(email, password, remember));
     };
 
     useEffect(() => {

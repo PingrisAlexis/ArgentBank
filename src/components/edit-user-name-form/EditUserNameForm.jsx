@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './EditUserNameForm.module.scss';
 import { useSelector } from 'react-redux';
 import { tokenSelector, userSelector } from '../../store/selectors/selectors';
-import { edit } from '../../store/actions/auth';
+import { editUser } from '../../store/actions/user';
 import { useDispatch } from 'react-redux';
 
 /**
@@ -27,7 +27,7 @@ const EditUserNameForm = () => {
     const handleEdit = (event) => {
         event.preventDefault();
         setEditMode(false);
-        dispatch(edit(firstName, lastName, token));
+        dispatch(editUser(firstName, lastName, token));
     };
 
     return (

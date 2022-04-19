@@ -3,7 +3,7 @@ import Logo from '../../assets/argentBankLogo.png';
 import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../store/actions/auth';
+import { logoutUser } from '../../store/actions/user';
 import {
     isLoadingSelector,
     isLoggedInSelector,
@@ -25,7 +25,7 @@ const Header = () => {
     const user = useSelector(userSelector);
 
     const signOut = () => {
-        dispatch(logout());
+        dispatch(logoutUser());
     };
 
     return (
