@@ -1,23 +1,16 @@
 import { Header, Footer } from './components';
 import { HomePage, LoginPage, ProfilePage } from './views';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { remember } from './store/actions/auth';
+import { useSelector } from 'react-redux';
 import { isLoggedInSelector } from './store/selectors/selectors';
-import Protected from './utils/protected-routes/ProtectedRoutes';
+import ProtectedRoutes from './utils/protected-routes/ProtectedRoutes';
 import NotFound from './views/not-found/NotFound';
+import isRememberChecked from './utils/remember-user/RememberUser';
+import { useEffect } from 'react';
 
 function App() {
-    let dispatch = useDispatch();
     const isLoggedIn = useSelector(isLoggedInSelector);
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        if (token) {
-            dispatch(remember(token));
-        }
-    }, [token, dispatch]);
+    isRememberChecked();
 
     return (
         <div className="App">
@@ -30,9 +23,9 @@ function App() {
                     <Route
                         path="/profile"
                         element={
-                            <Protected isLoggedIn={isLoggedIn}>
+                            <ProtectedRoutes isLoggedIn={isLoggedIn}>
                                 <ProfilePage />
-                            </Protected>
+                            </ProtectedRoutes>
                         }
                     />
                 </Routes>
