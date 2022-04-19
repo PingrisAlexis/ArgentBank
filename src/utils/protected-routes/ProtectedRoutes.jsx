@@ -1,5 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import TokenExpiration from '../token-expiration/TokenExpiration';
+import PropTypes from 'prop-types';
+import HeroItem from '../../components/hero-item/HeroItem';
 /**
  * @name ProtectedRoutes
  * @description This utils will control if user is logged in or not, to render profile page or home page.
@@ -15,4 +17,10 @@ const ProtectedRoutes = ({ isLoggedIn, children }) => {
     }
     return children;
 };
+
+ProtectedRoutes.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    children: PropTypes.element.isRequired,
+};
+
 export default ProtectedRoutes;
