@@ -8,6 +8,7 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
             type: LOADING,
             payload: true,
         });
+
         const token = await service.userLogin(username, password);
 
         dispatch({
@@ -27,6 +28,7 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
         });
 
         const user = await service.userProfile(token);
+
         dispatch({
             type: USER_PROFILE,
             payload: { user },
@@ -42,11 +44,14 @@ export const editUser = (firstName, lastName, token) => async (dispatch) => {
             type: LOADING,
             payload: true,
         });
+
         const user = await service.userEdit(firstName, lastName, token);
+
         dispatch({
             type: LOADING,
             payload: false,
         });
+
         dispatch({
             type: USER_PROFILE,
             payload: { user },
@@ -59,11 +64,21 @@ export const editUser = (firstName, lastName, token) => async (dispatch) => {
 export const rememberUser = (token) => async (dispatch) => {
     try {
         dispatch({
+            type: LOADING,
+            payload: true,
+        });
+
+        dispatch({
             type: LOGIN_SUCCESS,
             payload: { token },
         });
 
         const user = await service.userProfile(token);
+
+        dispatch({
+            type: LOADING,
+            payload: false,
+        });
 
         dispatch({
             type: USER_PROFILE,
