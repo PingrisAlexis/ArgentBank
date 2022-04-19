@@ -50,14 +50,6 @@ export default function (state = initialState, action) {
                 isLoggedIn: false,
             };
         }
-        // case REMEMBER: {
-        //     return {
-        //         ...state,
-        //         user: payload.user,
-        //         token: payload.token,
-        //         isLoggedIn: true,
-        //     };
-        // }
         case LOADING: {
             return {
                 ...state,
