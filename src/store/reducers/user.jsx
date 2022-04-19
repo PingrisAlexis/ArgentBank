@@ -5,7 +5,6 @@ import {
     LOADING,
     REMEMBER,
     USER_PROFILE,
-    EDIT_USER_PROFILE,
 } from '../actions/types';
 
 const initialState = {

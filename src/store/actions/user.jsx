@@ -2,7 +2,7 @@ import { LOGIN_SUCCESS, LOGOUT, LOADING, USER_PROFILE } from './types';
 
 import { service } from '../../services/api';
 
-export const login = (username, password, remember) => async (dispatch) => {
+export const loginUser = (username, password, remember) => async (dispatch) => {
     try {
         dispatch({
             type: LOADING,
@@ -36,7 +36,7 @@ export const login = (username, password, remember) => async (dispatch) => {
     }
 };
 
-export const edit = (firstName, lastName, token) => async (dispatch) => {
+export const editUser = (firstName, lastName, token) => async (dispatch) => {
     try {
         dispatch({
             type: LOADING,
@@ -56,7 +56,7 @@ export const edit = (firstName, lastName, token) => async (dispatch) => {
     }
 };
 
-export const remember = (token) => async (dispatch) => {
+export const rememberUser = (token) => async (dispatch) => {
     try {
         dispatch({
             type: LOGIN_SUCCESS,
@@ -74,7 +74,7 @@ export const remember = (token) => async (dispatch) => {
     }
 };
 
-export const logout = () => (dispatch) => {
+export const logoutUser = () => (dispatch) => {
     dispatch({
         type: LOGOUT,
     });
