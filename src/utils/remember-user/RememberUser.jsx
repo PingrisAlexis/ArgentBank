@@ -4,7 +4,8 @@ import { rememberUser } from '../../store/actions/user';
 
 /**
  * @name IsRememberChecked
- * @description This utils will call rememberUser if remember is already checked.
+ * @description This utils will call rememberUser if remember is has been already checked.
+ * @returns {JSX.Element}
  * @returns {JSX.Element}
  */
 
@@ -13,7 +14,7 @@ const IsRememberChecked = () => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        if (token) {
+        if (token !== null && token !== undefined) {
             dispatch(rememberUser(token));
         }
     }, [token, dispatch]);

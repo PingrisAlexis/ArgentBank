@@ -43,10 +43,15 @@ const Header = () => {
                     <LoaderSpinner />
                 ) : isLoggedIn ? (
                     <div>
-                        <Link to="/profile" className={styles.header_nav_item}>
-                            <i className="fa fa-user-circle fa-lg" />
-                            {user.firstName}
-                        </Link>
+                        {user && (
+                            <Link
+                                to="/profile"
+                                className={styles.header_nav_item}
+                            >
+                                <i className="fa fa-user-circle fa-lg" />
+                                {user.firstName}
+                            </Link>
+                        )}
                         <Link
                             to="/"
                             className={styles.header_nav_item}
