@@ -3,15 +3,13 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     LOADING,
-    REMEMBER,
     USER_PROFILE,
 } from '../actions/types';
 
 const initialState = {
-    isLoggedIn: false,
     error: null,
-    token: '',
-    user: {},
+    token: null,
+    user: null,
     isLoading: false,
 };
 
@@ -21,7 +19,6 @@ export default function (state = initialState, action) {
         case LOGIN_SUCCESS: {
             return {
                 ...state,
-                isLoggedIn: true,
                 token: payload.token,
                 error: null,
             };
@@ -29,25 +26,22 @@ export default function (state = initialState, action) {
         case LOGIN_FAIL: {
             return {
                 ...state,
-                isLoggedIn: false,
                 token: null,
-                error: payload,
+                error: true,
             };
         }
         case USER_PROFILE: {
             return {
                 ...state,
                 user: payload.user,
-                isLoggedIn: true,
             };
         }
         case LOGOUT: {
             localStorage.removeItem('token');
             return {
                 ...state,
-                user: {},
-                token: '',
-                isLoggedIn: false,
+                user: null,
+                token: null,
             };
         }
         case LOADING: {
