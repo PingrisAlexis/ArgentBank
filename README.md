@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# PingrisAlexis_13_31032022
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project 13 Front-End OpenClassrooms - Use an API for a bank account.
 
-## Available Scripts
+### Specifications:
 
-In the project directory, you can run:
+- Technologies used: React, React Router, redux
 
-### `npm start`
+- Make a swagger with API's end points for the transactions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Respect the mocks up and charts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User can log in and modify their own informations
 
-### `npm test`
+### Elements provided:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Tools and technical constraints
 
-### `npm run build`
+- HTML & CSS: home page, login page and profile page   (to adjust in jsx)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Back-end part
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- user's swagger API 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Set up:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Create a folder, open it with you IDE, and follow the instructions:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Back-end:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- NodeJS version 12 (You can use [NVM](https://github.com/nvm-sh/nvm) to manage NodeJS versions)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Clone the back-en part :
 
-## Learn More
+- `git clone https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API.git`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Now, go to the back-end folder `cd Project-10-Bank-API`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Then, install dependencies : `npm install`
 
-### Code Splitting
+- You need your own MongoDB cluster, when you make it, insert the url of your database 
+in the .env ( DATABASE_URL=" PUT YOUR MONGO DB CLUSTER URL HERE")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Please, run `npm populate-db` to populate the mongoDB database.
 
-### Analyzing the Bundle Size
+- Now, you can run the back-end server (port 3000):  `npm run dev:server`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Front-end:
 
-### Making a Progressive Web App
+- Please, open a second terminal and clone the front-end part and install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `git clone https://github.com/PingrisAlexis/PingrisAlexis_13_31032022.git`
 
-### Advanced Configuration
+- Now, go to the front-end folder `cd PingrisAlexis_13_310320222`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Then, install dependencies : `npm install`
 
-### Deployment
+- Now, you can run the front-end server:  `npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### Project:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- There is two users you can login with:
+
+  username: `tony@stark.com`
+  password:  `password123`
+
+  username:  `steve@rogers.com`
+  Password:  `password456`
+
+### Skills assessed:
+
+- Implement a state manager in a React application
+
+- Interacting with an API
+
+- Modeling an API
+
+- Authenticating to an API
+
