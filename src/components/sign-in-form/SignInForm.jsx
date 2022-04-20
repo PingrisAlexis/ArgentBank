@@ -5,11 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../store/actions/user';
 import {
-    errorSelector,
     isLoadingSelector,
     isLoggedInSelector,
 } from '../../store/selectors/selectors';
-import { LoaderSpinner } from '../index';
 
 /**
  * @name SignInForm
@@ -24,14 +22,17 @@ const SignInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
+    const [error, setError] = useState(false);
 
     const isLoggedIn = useSelector(isLoggedInSelector);
-    const error = useSelector(errorSelector);
     const isLoading = useSelector(isLoadingSelector);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginUser(email, password, remember));
+        if (!isLoggedIn && !isLoading) {
+            setError(true);
+        }
     };
 
     useEffect(() => {
@@ -40,9 +41,7 @@ const SignInForm = () => {
         }
     }, [isLoggedIn, navigate]);
 
-    return isLoading ? (
-        <LoaderSpinner />
-    ) : (
+    return (
         <form onSubmit={handleSubmit}>
             <div className={styles.input_wrapper}>
                 <label htmlFor="username">tony@stark.com</label>
@@ -72,7 +71,13 @@ const SignInForm = () => {
                 <label htmlFor="remember-me">Remember me</label>
             </div>
             <button className={styles.sign_in_button}>Sign In</button>
-            {error && <div>{error}</div>}
+            {error ? (
+                <p className={styles.error_submit}>
+                    "Incorrect username or password"
+                </p>
+            ) : (
+                ''
+            )}
         </form>
     );
 };
