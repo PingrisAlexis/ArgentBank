@@ -28,15 +28,17 @@ const ProfilePage = () => {
         <LoaderSpinner />
     ) : isLoggedIn ? (
         <main className={styles.profile_page_container}>
-            <section>
-                <h2>
-                    Welcome back{' '}
-                    <b>
-                        {user.firstName} {user.lastName}
-                    </b>
-                </h2>
-                <EditUserNameForm />
-            </section>
+            {user && (
+                <section>
+                    <h2>
+                        Welcome back{' '}
+                        <b>
+                            {user.firstName} {user.lastName}
+                        </b>
+                    </h2>
+                    <EditUserNameForm />
+                </section>
+            )}
             {TRANSACTIONS_CARDS_CONTENT.map((item) => {
                 return (
                     <TransactionCard key={item.id} transactionContent={item} />
