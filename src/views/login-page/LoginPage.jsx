@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './LoginPage.module.scss';
-import { SignInForm } from '../../components';
+import { LoaderSpinner, SignInForm } from '../../components';
 import '../../index.module.scss';
+import { useSelector } from 'react-redux';
+import { isLoadingSelector } from '../../store/selectors/selectors';
 
 /**
  * @name LoginPage
@@ -10,7 +12,11 @@ import '../../index.module.scss';
  */
 
 const LoginPage = () => {
-    return (
+    const isLoading = useSelector(isLoadingSelector);
+
+    return isLoading ? (
+        <LoaderSpinner />
+    ) : (
         <main className={styles.login_container}>
             <section className={styles.sign_in_content}>
                 <i className={`${styles.sign_in_icon} fa fa-user-circle`} />
