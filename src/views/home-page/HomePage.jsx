@@ -11,7 +11,7 @@ import styles from './HomePage.module.scss';
 
 const HomePage = () => {
     return (
-        <main>
+        <main className={styles.home_page_container}>
             <div className={styles.hero}>
                 <section className={styles.hero_content}>
                     <h2 className="sr-only">Promoted Content</h2>
