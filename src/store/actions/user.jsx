@@ -3,10 +3,17 @@ import {
     LOGOUT,
     LOADING,
     USER_PROFILE,
-    LOGIN_FAIL,
+    // LOGIN_FAIL,
 } from './types';
-
 import { service } from '../../services/api';
+
+/**
+ * @name  loginUser
+ * @param {string} username
+ * @param {string} password
+ * @param {boolean} remember
+ * @returns {Object} Return an object with user informations and token
+ */
 
 export const loginUser = (username, password, remember) => async (dispatch) => {
     try {
@@ -22,7 +29,7 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
             payload: { token },
         });
 
-        if (remember) {
+        if (remember && token) {
             localStorage.setItem('token', token);
         } else {
             localStorage.removeItem('token');
@@ -41,10 +48,18 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
         });
     } catch (error) {
         dispatch({
-            type: LOGIN_FAIL,
+            type: LOGOUT,
         });
     }
 };
+
+/**
+ * @name  editUser
+ * @param {string} firstName
+ * @param {string} lastName
+ * @param {string} token
+ * @returns {Object} Return an object with update user informations
+ */
 
 export const editUser = (firstName, lastName, token) => async (dispatch) => {
     try {
@@ -66,10 +81,16 @@ export const editUser = (firstName, lastName, token) => async (dispatch) => {
         });
     } catch (error) {
         dispatch({
-            type: LOGIN_FAIL,
+            type: LOGOUT,
         });
     }
 };
+
+/**
+ * @name  rememberUser
+ * @param {string} token
+ * @returns {Object} Return an object with user informations if remember is check
+ */
 
 export const rememberUser = (token) => async (dispatch) => {
     try {
@@ -98,7 +119,7 @@ export const rememberUser = (token) => async (dispatch) => {
         }
     } catch (error) {
         dispatch({
-            type: LOGIN_FAIL,
+            type: LOGOUT,
         });
     }
 };

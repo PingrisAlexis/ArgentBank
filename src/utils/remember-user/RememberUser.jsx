@@ -14,7 +14,7 @@ const IsRememberChecked = () => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        if (token !== null && token !== undefined) {
+        if (token) {
             dispatch(rememberUser(token));
         }
     }, [token, dispatch]);

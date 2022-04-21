@@ -8,7 +8,7 @@ export const tokenSelector = (state) => state.token;
 export const userSelector = (state) => state.user;
 export const isLoadingSelector = (state) => state.isLoading;
 export const isLoggedInSelector = (state) => {
-    if (state.token !== null && state.token !== undefined) {
+    if (state.token) {
         return isTokenValid(decodeToken(state.token));
     }
     return false;

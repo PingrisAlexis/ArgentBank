@@ -7,7 +7,6 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    error: null,
     token: null,
     user: null,
     isLoading: false,
@@ -20,14 +19,6 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 token: payload.token,
-                error: null,
-            };
-        }
-        case LOGIN_FAIL: {
-            return {
-                ...state,
-                token: null,
-                error: true,
             };
         }
         case USER_PROFILE: {
@@ -36,18 +27,19 @@ export default function (state = initialState, action) {
                 user: payload.user,
             };
         }
+        case LOADING: {
+            return {
+                ...state,
+                isLoading: payload,
+            };
+        }
         case LOGOUT: {
             localStorage.removeItem('token');
             return {
                 ...state,
                 user: null,
                 token: null,
-            };
-        }
-        case LOADING: {
-            return {
-                ...state,
-                isLoading: payload,
+                isLoading: false,
             };
         }
         default:
