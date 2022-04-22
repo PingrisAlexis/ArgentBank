@@ -6,7 +6,7 @@
 
 - Technologies used: React, React Router, redux
 
-- Make a swagger with API's end points for the transactions.
+- Make a Swagger with API's end points for the transactions.
 
 - Respect the mocks up and charts
 
@@ -20,7 +20,7 @@
 
 - Back-end part
 
-- user's swagger API 
+- User's swagger API 
 
 
 ### Set up:
@@ -78,4 +78,6 @@ in the .env ( DATABASE_URL=" PUT YOUR MONGO DB CLUSTER URL HERE")
 - Modeling an API
 
 - Authenticating to an API
+
+- [Swagger API Transaction](https://app.swaggerhub.com/apis-docs/PingrisAlexis/PingrisAlexis_13_31032022_swagger/1.0.0#/)
 
