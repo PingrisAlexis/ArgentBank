@@ -1,30 +1,133 @@
 swagger: '2.0'
 info:
-  description: BASE URL :http://localhost:3000/user/{userId}/account/{accountId}/transaction/{transactionId}
+  description: "Base URL localhost:3001/api/v1   Create the API documentation for the transactions."
   version: 1.0.0
-  title: PingrisAlexis_13_31032022_API_DOC
-
-
+  title: PingrisAlexis_13_31032022 API DOC
   license:
     name: Apache 2.0
 
+# schemes:
+#  - http
 tags:
-  - name: Transactions
-    description: Operations to manage transactions details
 
+  - name: Transaction
+    description: Operations to manage transactions
+  - name: User
+    description: Operations to manage users
 paths:
-  /transaction/{transactionId}:
-    get:
+  /user/login:
+    post:
       tags:
-        - "Transactions"
+        - User
+      summary: Login
+      description: API for Login
+      parameters:
+        - in: body
+          name: body
+          description: Login Payload
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Login Successfully
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/signup:
+    post:
+      tags:
+        - User
+      summary: Signup
+      description: API for Signup
+      parameters:
+        - in: body
+          name: body
+          description: Signup Payload
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Signup Successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/profile:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: User Profile API
+      description: API for fetching a user profile
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: 'string'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User profile retrieved successully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: User Profile API
+      description: API for updating a user profile
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: 'string'
+        - in: body
+          name: body
+          description: Update user profile attributes
+          required: true
+          schema:
+            $ref: '#/definitions/UserProfile'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User profile retrieved successully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /transaction:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
       description: Get details from a transaction if user is connected
       produces:
         - application/json
       parameters:
-        - in: path
-          name: transactionId
-          required: true
-          type: string
         - in: header
           name: Authorization
           description: Attach Bearer JWT token.
@@ -38,13 +141,20 @@ paths:
             $ref: '#/definitions/Transaction'
       responses:
         200:
-          description: search results matching criteria
+          description: Successful Operation
         400:
-          description: bad input parameter
+          description: Invalid Transaction Description Supplied
+        404:
+          description: Transaction Not Found
+        500:
+          description: Internal Server Error
+  /transaction/{transactionId}:
     post:
+      security:
+        - Bearer: []
       tags:
-        - Transactions
-      description: Post details of a transaction
+        - Transaction
+      description: Create a transaction's description
       consumes:
         - application/json
       produces:
@@ -53,11 +163,11 @@ paths:
         - in: path
           name: transactionId
           required: true
-          type: string
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token.
-          type: "string"
+          type: string
           required: true
         - in: body
           name: body
@@ -67,15 +177,19 @@ paths:
             $ref: '#/definitions/TransactionDescription'
       responses:
         201:
-          description: item created
+          description: Successful Operation
         400:
-          description: invalid input, object invalid
+          description: Invalid Transaction Description Supplied
+        404:
+          description: Transaction Not Found
         500:
           description: Internal Server Error
     put:
+      security:
+        - Bearer: []
       tags:
-        - Transactions
-      description: update transaction detail
+        - Transaction
+      description: update a transaction's description
       consumes:
         - application/json
       produces:
@@ -84,11 +198,11 @@ paths:
         - in: path
           name: transactionId
           required: true
-          type: string
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token.
-          type: "string"
+          type: string
           required: true
         - in: body
           name: body
@@ -98,17 +212,19 @@ paths:
             $ref: '#/definitions/TransactionDescription'
       responses:
         201:
-          description: Transaction's Description Updated
+          description: Successful Operation
         400:
-          description: Invalid Transaction Supplied
+          description: Invalid Transaction Description Supplied
         404:
           description: Transaction Not Found
         500:
           description: Internal Server Error
     delete:
+      security:
+        - Bearer: []
       tags:
-        - Transactions
-      description: delete transaction detail
+        - Transaction
+      description: delete a transaction's description
       consumes:
         - application/json
       produces:
@@ -122,11 +238,11 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token.
-          type: "string"
+          type: string
           required: true
       responses:
         200:
-          description: Transaction deleted
+          description: Successful Operation
         400:
           description: Invalid Transaction Supplied
         404:
@@ -139,6 +255,54 @@ securityDefinitions:
     name: Authorization
     in: header
 definitions:
+  User:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+      firstName:
+        type: string
+        description: user first name
+      lastName:
+        type: string
+        description: user last name
+  Login:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
   Transaction:
     type: object
     properties:
@@ -194,18 +358,10 @@ definitions:
           note:
             type: string
             description: user's notes for transaction
-  ApiResponse:
-    type: "object"
-    properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /PingrisAlexis/PingrisAlexis_13_31032022_swagger/1.0.0
+# Added by API Auto Mocking Plugin
 schemes:
   - https
+  - http
