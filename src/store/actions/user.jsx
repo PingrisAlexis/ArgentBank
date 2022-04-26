@@ -3,6 +3,7 @@ import {
     LOGOUT,
     LOADING,
     USER_PROFILE,
+    ERROR,
     // LOGIN_FAIL,
 } from './types';
 import { service } from '../../services/api';
@@ -36,7 +37,6 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
         }
 
         const user = await service.userProfile(token);
-
         dispatch({
             type: LOADING,
             payload: false,
@@ -46,9 +46,20 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
             type: USER_PROFILE,
             payload: { user },
         });
+
+        if (!token) {
+            dispatch({
+                type: ERROR,
+                payload: true,
+            });
+        }
     } catch (error) {
         dispatch({
             type: LOGOUT,
+        });
+        dispatch({
+            type: ERROR,
+            payload: true,
         });
     }
 };

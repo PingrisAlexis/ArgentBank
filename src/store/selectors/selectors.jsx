@@ -5,6 +5,7 @@ import {
 } from '../../utils/token-validity/TokenValidity';
 
 export const tokenSelector = (state) => state.token;
+export const errorSelector = (state) => state.error;
 export const userSelector = (state) => state.user;
 export const isLoadingSelector = (state) => state.isLoading;
 export const isLoggedInSelector = (state) => {

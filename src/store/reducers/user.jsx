@@ -1,6 +1,6 @@
 import {
     LOGIN_SUCCESS,
-    LOGIN_FAIL,
+    ERROR,
     LOGOUT,
     LOADING,
     USER_PROFILE,
@@ -10,6 +10,7 @@ const initialState = {
     token: null,
     user: null,
     isLoading: false,
+    error: false,
 };
 
 export default function (state = initialState, action) {
@@ -19,6 +20,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 token: payload.token,
+                error: false,
             };
         }
         case USER_PROFILE: {
@@ -40,6 +42,13 @@ export default function (state = initialState, action) {
                 user: null,
                 token: null,
                 isLoading: false,
+                error: false,
+            };
+        }
+        case ERROR: {
+            return {
+                ...state,
+                error: payload,
             };
         }
         default:
