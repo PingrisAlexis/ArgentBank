@@ -10,7 +10,7 @@ info:
 #  - http
 tags:
 
-  - name: Transaction
+  - name: Transactions
     description: Operations to manage transactions
   - name: User
     description: Operations to manage users
@@ -118,13 +118,13 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transaction:
+  /transactions:
     get:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      description: Get details from a transaction if user is connected
+        - Transactions
+      description: Get all transactions if user is connected
       produces:
         - application/json
       parameters:
@@ -133,37 +133,28 @@ paths:
           description: Attach Bearer JWT token.
           type: string
           required: true
-        - in: body
-          name: body
-          description: Update user profile attributes
-          required: true
-          schema:
-            $ref: '#/definitions/Transaction'
       responses:
         200:
           description: Successful Operation
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
         400:
           description: Invalid Transaction Description Supplied
         404:
           description: Transaction Not Found
         500:
           description: Internal Server Error
-  /transaction/{transactionId}:
     post:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transactions
       description: Create a transaction's description
       consumes:
         - application/json
       produces:
         - application/json
       parameters:
-        - in: path
-          name: transactionId
-          required: true
-          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token.
@@ -178,6 +169,36 @@ paths:
       responses:
         201:
           description: Successful Operation
+        400:
+          description: Invalid Transaction Description Supplied
+        404:
+          description: Transaction Not Found
+        500:
+          description: Internal Server Error
+  /transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      description: Get a transaction if user is connected
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: integer
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token.
+          type: string
+          required: true
+      responses:
+        200:
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/TransactionResponse'
         400:
           description: Invalid Transaction Description Supplied
         404:
@@ -188,8 +209,8 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      description: update a transaction's description
+        - Transactions
+      description: Update a transaction's description
       consumes:
         - application/json
       produces:
@@ -211,7 +232,7 @@ paths:
           schema:
             $ref: '#/definitions/TransactionDescription'
       responses:
-        201:
+        204:
           description: Successful Operation
         400:
           description: Invalid Transaction Description Supplied
@@ -223,8 +244,8 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      description: delete a transaction's description
+        - Transactions
+      description: Delete a transaction's description
       consumes:
         - application/json
       produces:
@@ -241,7 +262,7 @@ paths:
           type: string
           required: true
       responses:
-        200:
+        204:
           description: Successful Operation
         400:
           description: Invalid Transaction Supplied
@@ -303,61 +324,64 @@ definitions:
         type: string
       lastName:
         type: string
+  TransactionsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+        example: Response status message
+      body:
+        type: array
+        items:
+          $ref: "#/definitions/Transaction"
+  TransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+        example: Response status message
+      body:
+        $ref: "#/definitions/Transaction"
   Transaction:
     type: object
     properties:
-      status:
-        type: integer
-      message:
+      id:
         type: string
-        example: Response status message
-      body:
-        type: object
-        properties:
-          id:
-            type: integer
-            description: transaction ID
-          created:
-            type: string
-            description: transaction date
-          description:
-            type: string
-            description: transaction description
-          amount:
-            type: number
-            description: transaction amount
-          balance:
-            type: number
-            description: account balance after transaction
-          transactionType:
-            type: string
-            description: transaction type
-          category:
-            type: string
-            description: transaction category
-          note:
-            type: string
-            description: user's notes for transaction
+        description: transaction ID
+      created:
+        type: string
+        description: transaction date
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: number
+        description: transaction amount
+      balance:
+        type: number
+        description: account balance after transaction
+      transactionType:
+        type: string
+        description: transaction type
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: user's notes for transaction
   TransactionDescription:
     type: object
     properties:
-      status:
-        type: integer
-      message:
+      category:
         type: string
-        example: Response status message
-      body:
-        type: object
-        properties:
-          id:
-            type: integer
-            description: transaction ID
-          category:
-            type: string
-            description: transaction's category
-          note:
-            type: string
-            description: user's notes for transaction
+        description: transaction's category
+      note:
+        type: string
+        description: user's notes for transaction
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /PingrisAlexis/PingrisAlexis_13_31032022_swagger/1.0.0
