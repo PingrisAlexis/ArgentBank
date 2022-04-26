@@ -10,7 +10,9 @@
       border: 2px solid #ccc;
       margin: 0.5rem;
       padding-left: 1rem;
-
+      &:invalid {
+        border: red solid 3px;
+      }
     }
   ::placeholder {
     font-size: 1.6rem;

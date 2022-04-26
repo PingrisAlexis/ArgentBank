@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../store/actions/user';
 import {
+    errorSelector,
     isLoadingSelector,
     isLoggedInSelector,
 } from '../../store/selectors/selectors';
+import { LoaderSpinner } from '../index';
 
 /**
  * @name SignInForm
@@ -22,17 +24,14 @@ const SignInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
-    const [error, setError] = useState(false);
 
     const isLoggedIn = useSelector(isLoggedInSelector);
     const isLoading = useSelector(isLoadingSelector);
+    const hasError = useSelector(errorSelector);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(loginUser(email, password, remember));
-        if (!isLoggedIn && !isLoading) {
-            setError(true);
-        }
     };
 
     useEffect(() => {
@@ -48,8 +47,13 @@ const SignInForm = () => {
                 <label htmlFor="username">password123</label>
                 <label htmlFor="username">Username</label>
                 <input
+                    onKeyPress={(event) =>
+                        (event.charCode >= 65 && event.charCode <= 90) ||
+                        (event.charCode >= 97 && event.charCode <= 122)
+                    }
+                    minLength={2}
                     disabled={isLoading}
-                    type="text"
+                    type="email"
                     id="username"
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -57,6 +61,7 @@ const SignInForm = () => {
             <div className={styles.input_wrapper}>
                 <label htmlFor="password">Password</label>
                 <input
+                    minLength={8}
                     type="password"
                     id="password"
                     onChange={(e) => setPassword(e.target.value)}
@@ -71,7 +76,7 @@ const SignInForm = () => {
                 <label htmlFor="remember-me">Remember me</label>
             </div>
             <button className={styles.sign_in_button}>Sign In</button>
-            {error ? (
+            {hasError ? (
                 <p className={styles.error_submit}>
                     "Incorrect username or password"
                 </p>

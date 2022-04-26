@@ -34,6 +34,10 @@
 .input_wrapper input {
     padding: 0.5rem;
     font-size: 1.6rem;
+    &:invalid {
+        outline: none;
+        border: red solid 2px;
+    }
 }
 
 .error_submit {
