@@ -8,6 +8,7 @@
     border-color: var(--secondary-color);
     background-color: var(--secondary-color);
     color: #fff;
+    cursor: pointer;
 }
 
 .input_remember {
@@ -37,9 +38,12 @@
     &:invalid {
         outline: none;
         border: red solid 2px;
+        border-radius: 4px;
     }
 }
-
+.input_remember input {
+    cursor: pointer;
+}
 .error_submit {
     color: red;
     font-weight: bold;

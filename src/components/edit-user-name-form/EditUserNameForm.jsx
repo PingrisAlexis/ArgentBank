@@ -40,6 +40,7 @@ const EditUserNameForm = () => {
                     <div className={styles.edit_user_name_input_container}>
                         <label htmlFor="firstname">
                             <input
+                                pattern="^[a-zA-Z]+$"
                                 minLength={2}
                                 maxLength={15}
                                 type="text"
@@ -53,6 +54,7 @@ const EditUserNameForm = () => {
                                 minLength={2}
                                 maxLength={15}
                                 type="text"
+                                pattern="^[a-zA-Z]+$"
                                 name="lastname"
                                 placeholder={lastName}
                                 onChange={(e) => setLastName(e.target.value)}

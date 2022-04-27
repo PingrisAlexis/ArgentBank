@@ -43,14 +43,8 @@ const SignInForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div className={styles.input_wrapper}>
-                <label htmlFor="username">tony@stark.com</label>
-                <label htmlFor="username">password123</label>
                 <label htmlFor="username">Username</label>
                 <input
-                    onKeyPress={(event) =>
-                        (event.charCode >= 65 && event.charCode <= 90) ||
-                        (event.charCode >= 97 && event.charCode <= 122)
-                    }
                     minLength={2}
                     disabled={isLoading}
                     type="email"
@@ -78,7 +72,7 @@ const SignInForm = () => {
             <button className={styles.sign_in_button}>Sign In</button>
             {hasError ? (
                 <p className={styles.error_submit}>
-                    "Incorrect username or password"
+                    Incorrect username or password
                 </p>
             ) : (
                 ''
