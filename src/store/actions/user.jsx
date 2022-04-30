@@ -1,12 +1,6 @@
-import {
-    LOGIN_SUCCESS,
-    LOGOUT,
-    LOADING,
-    USER_PROFILE,
-    ERROR,
-    // LOGIN_FAIL,
-} from './types';
+import { USER_LOGIN, LOGOUT, LOADING, USER_PROFILE, ERROR } from './types';
 import { service } from '../../services/api';
+import PropTypes from 'prop-types';
 
 /**
  * @name  loginUser
@@ -26,7 +20,7 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
         const token = await service.userLogin(username, password);
 
         dispatch({
-            type: LOGIN_SUCCESS,
+            type: USER_LOGIN,
             payload: { token },
         });
 
@@ -37,10 +31,6 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
         }
 
         const user = await service.userProfile(token);
-        dispatch({
-            type: LOADING,
-            payload: false,
-        });
 
         dispatch({
             type: USER_PROFILE,
@@ -53,15 +43,23 @@ export const loginUser = (username, password, remember) => async (dispatch) => {
                 payload: true,
             });
         }
-    } catch (error) {
+
         dispatch({
-            type: LOGOUT,
+            type: LOADING,
+            payload: false,
         });
+    } catch (error) {
         dispatch({
             type: ERROR,
             payload: true,
         });
     }
+};
+
+loginUser.propTypes = {
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    remember: PropTypes.bool.isRequired,
 };
 
 /**
@@ -92,9 +90,16 @@ export const editUser = (firstName, lastName, token) => async (dispatch) => {
         });
     } catch (error) {
         dispatch({
-            type: LOGOUT,
+            type: ERROR,
+            payload: true,
         });
     }
+};
+
+editUser.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired,
 };
 
 /**
@@ -112,27 +117,32 @@ export const rememberUser = (token) => async (dispatch) => {
             });
 
             dispatch({
-                type: LOGIN_SUCCESS,
+                type: USER_LOGIN,
                 payload: { token },
             });
 
             const user = await service.userProfile(token);
 
             dispatch({
-                type: LOADING,
-                payload: false,
+                type: USER_PROFILE,
+                payload: { user },
             });
 
             dispatch({
-                type: USER_PROFILE,
-                payload: { user },
+                type: LOADING,
+                payload: false,
             });
         }
     } catch (error) {
         dispatch({
-            type: LOGOUT,
+            type: ERROR,
+            payload: true,
         });
     }
+};
+
+rememberUser.propTypes = {
+    token: PropTypes.string.isRequired,
 };
 
 export const logoutUser = () => (dispatch) => {
