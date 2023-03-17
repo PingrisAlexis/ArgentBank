@@ -1,6 +1,6 @@
-# PingrisAlexis_13_31032022
+# Project 8/9 - Front End Developer Path
 
-## Project 13 Front-End OpenClassrooms - Use an API for a bank account.
+## Use an API for a bank account.
 
 ### Specifications:
 
